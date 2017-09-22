@@ -1,5 +1,6 @@
 '''A module for demonstrating exceptions'''
-
+import sys
+from math import log
 
 def convert(s):
     try:
@@ -17,5 +18,11 @@ def convert(s):
 def convert2(s):
     try:
         return int(s)
-    except (ValueError, TypeError):
+    except (ValueError, TypeError) as e:
+        print("error:{}".format(str(e)), file=sys.stderr)
         return -1
+
+
+def string_log(s):
+    v = convert2(s)
+    return log(v)

@@ -11,6 +11,15 @@ def gen123():
     yield 3
 
 
+def take(count, iterable):
+    counter = 0
+    for item in iterable:
+        if counter == count:
+            return
+        counter += 1
+        yield item
+
+
 def distinct(iterable):
     seen = set()
     for item in iterable:
@@ -28,7 +37,7 @@ def main():
     print(next(g))
     print(next(g))
     items = [2, 3, 3, 4, 4, 4, 5, 7, 7, 9]
-    for item in distinct(items):
+    for item in take(3, distinct(items)):
         print(item)
 
 

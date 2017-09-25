@@ -11,6 +11,19 @@ country_to_city = {'France': 'Paris',
                    'Russia': 'Moscow',
                    'Japan': 'Tokyo',
                    'India': 'Mubmai'}
+weekdays = ['Monday',
+            'Tuesday',
+            'Wednesday',
+            'Thursday',
+            'Friday',]
+
+def iterate_weekdays():
+    iterable = iter(weekdays)
+    try:
+        while True:
+            print(next(iterable))
+    except StopIteration:
+        print("end of iterable")
 
 
 def list_comprehensions():
@@ -53,7 +66,7 @@ def main():
     pp(files_sizes('/usr/sbin/a*'))
     pp(primes())
     pp(prime_squares())
-
+    iterate_weekdays()
 
 if __name__ == '__main__':
     main()

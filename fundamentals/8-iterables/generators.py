@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
-'''Deomstrate generators'''
+"""Demostrate generators"""
 
 import sys
 
-
 def gen123():
-    '''generators are iterators'''
+    """generators are iterators"""
     yield 1
     yield 2
     yield 3

@@ -29,6 +29,10 @@ def distinct(iterable):
         yield item
 
 
+def sum_of_squares(x):
+    # no parenthesis required for generator...
+    return sum(x*x for x in range(1,x))
+
 
 def main():
     # must get an instance first, since they are stateful...
@@ -39,7 +43,7 @@ def main():
     items = [2, 3, 3, 4, 4, 4, 5, 7, 7, 9]
     for item in take(3, distinct(items)):
         print(item)
-
+    print(sum_of_squares(10000000))
 
 if __name__ == '__main__':
     main()

@@ -54,6 +54,7 @@ def is_prime(n):
 def primes():
     return [x for x in range(101) if is_prime(x)]
 
+
 def prime_squares():
     return {x * x:(1, x, x * x) for x in range(101) if is_prime(x)}
 

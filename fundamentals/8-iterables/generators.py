@@ -28,9 +28,9 @@ def distinct(iterable):
         yield item
 
 
-def sum_of_squares(x):
+def sum_of_squares(y):
     # no parenthesis required for generator...
-    return sum(x*x for x in range(1,x))
+    return sum(x*x for x in range(1,y))
 
 
 def main():

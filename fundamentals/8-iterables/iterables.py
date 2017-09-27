@@ -64,7 +64,7 @@ def main():
     pp(primes())
     pp(prime_squares())
     iterate_weekdays()
-
+    print(any(prime.is_prime(x) for x in range(6738, 6760)))
 
 if __name__ == '__main__':
     main()

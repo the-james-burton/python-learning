@@ -4,6 +4,15 @@
 
 import prime
 from itertools import islice, count, groupby, chain
+from statistics import mean
+
+saturday = [3,3,4,6,8,9,8,6,5,4,3,3]
+sunday   = [4,4,5,6,8,8,9,9,7,6,6,6]
+
+
+def zip_avg(a,b):
+    for x in zip(a, b):
+        print(mean(x))
 
 
 def primes(y):
@@ -16,7 +25,9 @@ def describe(s):
 
 
 def main():
-    print(list(primes(1000)))
+    print(list(primes(100)))
+    print(list(zip(saturday, sunday)))
+    zip_avg(saturday, sunday)
     description = describe("1")
     for x in range(10):
         print(description)

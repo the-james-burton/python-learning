@@ -14,3 +14,17 @@ class Flight:
 
     def airline(self):
         return self._number[:2]
+
+
+class Aircraft:
+    def __init__(self, reg, model, rows, seats):
+        self._reg = reg
+        self._model = model
+        self._rows = rows
+        self._seats = seats
+
+    def reg(self):
+        return self._reg
+
+    def model(self):
+        return self._model

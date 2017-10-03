@@ -35,16 +35,10 @@ class Flight:
     def bookings(self):
         return self._bookings
 
-    def book(self, seat, passenger):
-        """Book the given passenger into the given seat
-        Args:
-            seat: seat in concatenated row, seat format, e.g. '6B',
-            passenger: string of passenger name, e.g. 'John Smith'
+    def available_seats(self):
+        return sum( sum (1 for seat in row.values() if seat is None) for row in self._bookings if row is not None )
 
-        Raises:
-            ValueError: if seat is already taken
-        """
-
+    def _parse_seat(self, seat):
         # get the aircraft seating plan so we can validate against it...
         rows, seats = self._aircraft.seating_plan()
 
@@ -67,6 +61,19 @@ class Flight:
         # is the given row on the plan?
         if row not in rows:
             raise ValueError("Invalid row number:{}".format(row))
+
+        return row, letter
+
+    def book(self, seat, passenger):
+        """Book the given passenger into the given seat
+        Args:
+            seat: seat in concatenated row, seat format, e.g. '6B',
+            passenger: string of passenger name, e.g. 'John Smith'
+
+        Raises:
+            ValueError: if seat is already taken
+        """
+        row, letter = self._parse_seat(seat)
 
         # is the seat already taken?
         if self._bookings[row][letter] is not None:
@@ -110,6 +117,7 @@ def main():
         f.book("48Z", "Anthony Zebra")
     except ValueError as e:
         print(e)
+    print(f.available_seats())
     try:
         f.book("2B", "Zoltan Armadillo")
         f.book("3B", "Yves Bear")
@@ -118,6 +126,7 @@ def main():
     except ValueError as e:
         print(e)
     pprint(f.bookings())
+    print(f.available_seats())
 
 if __name__ == '__main__':
     main()

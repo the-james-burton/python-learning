@@ -39,6 +39,9 @@ def main():
     print(next(g))
     print(next(g))
     print(next(g))
+    h = gen123()
+    # note that generators complete normally when resolved fully...
+    print(list(h))
     items = [2, 3, 3, 4, 4, 4, 5, 7, 7, 9]
     for item in take(3, distinct(items)):
         print(item)

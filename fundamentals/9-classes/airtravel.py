@@ -83,6 +83,20 @@ class Flight:
         self._bookings[row][letter] = passenger
         print("{} booked into seat {}{}".format(passenger, row, letter))
 
+
+    def make_boarding_cards(self, card_printer):
+        for passenger, seat in sorted(self._passenger_seats()):
+            card_printer(passenger, seat, self.number(), self.aircraft_model())
+
+    def _passenger_seats(self):
+        """Loop through all the seats and yield passengers one at a time"""
+        row_numbers, seat_letters = self._aircraft.seating_plan()
+        for row in row_numbers:
+            for letter in seat_letters:
+                passenger = self._bookings[row][letter]
+                if passenger is not None:
+                    yield (passenger, "{}{}".format(row, letter))
+
 class Aircraft:
     def __init__(self, reg, model, rows, seats_per_row):
         self._reg = reg
@@ -127,6 +141,23 @@ def main():
         print(e)
     pprint(f.bookings())
     print(f.available_seats())
+    print(list(f._passenger_seats()))
+    f.make_boarding_cards(console_card_printer)
+
+
+def console_card_printer(passenger, seat, flight_number, aircraft):
+    output = "| Name: {0}" \
+             "  Flight: {1}" \
+             "  Seat: {2}" \
+             "  Aircraft: {3}" \
+             " |".format(passenger, flight_number, seat, aircraft)
+    banner = '+' + '-' * (len(output) - 2) + '+'
+    border = '|' + ' ' * (len(output) - 2) + '|'
+    lines = [banner, border, output, border, banner]
+    card = '\n'.join(lines)
+    print(card)
+    print()
+
 
 if __name__ == '__main__':
     main()

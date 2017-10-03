@@ -97,30 +97,44 @@ class Flight:
                 if passenger is not None:
                     yield (passenger, "{}{}".format(row, letter))
 
-class Aircraft:
-    def __init__(self, reg, model, rows, seats_per_row):
+
+class Airplane:
+    """effectively abstract, since it lacks a seating_plan() function"""
+    def __init__(self, reg):
         self._reg = reg
-        self._model = model
-        self._rows = rows
-        self._seats_per_row = seats_per_row
 
     def reg(self):
         return self._reg
 
+    def num_of_seats(self):
+        rows, seats = self.seating_plan()
+        return len(rows) * len(seats)
+
+
+class SmallAirplane(Airplane):
     def model(self):
-        return self._model
+        return "SmallAirplane"
 
     def seating_plan(self):
-        return (range(1, self._rows + 1), "ABCDEFGHJK"[:self._seats_per_row])
+        return (range(1, 12), "ABCD")
+
+
+class MediumAirplane(Airplane):
+    def model(self):
+        return "MediumAirplane"
+
+    def seating_plan(self):
+        return (range(1, 20), "ABCDEF")
 
 
 def main():
-    a = Aircraft("G-ABCD", "Small plane of some sort", rows=8, seats_per_row=3)
+    a = MediumAirplane("G-ABCD")
     print(a.reg())
     print(a.model())
-    print(a.seating_plan())
+    print(a.num_of_seats())
+    pprint(a.seating_plan())
 
-    f = Flight("NM064", Aircraft("G-WXYZ", "Slightly bigger plane", rows=10, seats_per_row=4))
+    f = Flight("NM064", SmallAirplane("G-WXYZ"))
     print(f.aircraft_model())
     print(f.bookings())
     try:

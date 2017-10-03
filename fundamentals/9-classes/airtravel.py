@@ -14,6 +14,14 @@ class Flight:
         self._number = number
         self._aircraft = aircraft
 
+        # unpack the single tuple returned by seating_plan()
+        # which is a range of the number of rows and an int of seats per row...
+        rows, seats = self._aircraft.seating_plan()
+
+        # initialize a booking grid for the seating plan
+        # this will be a list of dictionaries per row...
+        self._bookings = [None] + [ {s:None for s in seats} for _ in rows ]
+
     def number(self):
         return self._number
 
@@ -23,6 +31,49 @@ class Flight:
     def aircraft_model(self):
         return self._aircraft.model()
 
+    def bookings(self):
+        return self._bookings
+
+    def book(self, seat, passenger):
+        """Book the given passenger into the given seat
+        Args:
+            seat: seat in concatenated row, seat format, e.g. '6B',
+            passenger: string of passenger name, e.g. 'John Smith'
+
+        Raises:
+            ValueError: if seat is already taken
+        """
+
+        # get the aircraft seating plan so we can validate against it...
+        rows, seats = self._aircraft.seating_plan()
+
+        # get the last character of the given seat string, which should be a letter...
+        # (use negative indexing to get the last character)
+        letter = seat[-1]
+
+        # is the letter on the plan?
+        if letter not in seats:
+            raise ValueError("Invalid seat letter:{}".format(letter))
+
+        # is the row an integer?
+        try:
+            # (get the row number by using string slicing to get all but the last character)
+            row_text = seat[:-1]
+            row = int(row_text)
+        except:
+            raise ValueError("Row must be an integer:{}".format(row_text))
+
+        # is the given row on the plan?
+        if row not in rows:
+            raise ValueError("Invalid row number:{}".format(row))
+
+        # is the seat already taken?
+        if self._bookings[row][letter] is not None:
+            raise ValueError("Seat is already taken:{}".format(seat))
+
+        # all good, so book the seat...
+        self._bookings[row][letter] = passenger
+        print("{} booked into seat {}{}".format(passenger, row, letter))
 
 class Aircraft:
     def __init__(self, reg, model, rows, seats_per_row):
@@ -49,6 +100,22 @@ def main():
 
     f = Flight("NM064", Aircraft("G-WXYZ", "Slightly bigger plane", rows=10, seats_per_row=4))
     print(f.aircraft_model())
+    print(f.bookings())
+    try:
+        f.book("48A", "Anthony Zebra")
+    except ValueError as e:
+        print(e)
+    try:
+        f.book("48Z", "Anthony Zebra")
+    except ValueError as e:
+        print(e)
+    try:
+        f.book("2B", "Zoltan Armadillo")
+        f.book("3B", "Yves Bear")
+        f.book("2C", "Xander Crow")
+        f.book("2B", "Will Dear")
+    except ValueError as e:
+        print(e)
 
 if __name__ == '__main__':
     main()

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """airtravel"""
+from pprint import pprint
 
 
 class Flight:
@@ -116,6 +117,7 @@ def main():
         f.book("2B", "Will Dear")
     except ValueError as e:
         print(e)
+    pprint(f.bookings())
 
 if __name__ == '__main__':
     main()

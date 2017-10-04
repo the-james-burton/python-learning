@@ -18,7 +18,6 @@ def main():
     f.write(ipsum2)
     f.write(ipsum3)
     f.write(ipsum4)
-    f.write(ipsum5)
     f.close()
 
     g = open("temp.txt", mode="rt", encoding="utf-8")
@@ -26,6 +25,13 @@ def main():
     print(g.readline())
     print(g.readlines())
     g.close()
+
+    h = open("temp.txt", mode="at", encoding="utf-8")
+    h.writelines(ipsum5)
+    h.close()
+
+    f = open("temp.txt", mode="rt", encoding="utf-8")
+    print(f.readlines()[4])
 
 if __name__ == '__main__':
     main()

@@ -15,7 +15,7 @@ def numbers():
 
 def write_numbers(filename, count):
     f = open(filename, mode="wt", encoding="utf-8")
-    f.writelines("{}\n".format(x) for x in islice(numbers(), count + 1))
+    f.writelines("{}\n".format(x) for x in islice(numbers(), count))
 
 
 def main():

@@ -6,13 +6,17 @@ from itertools import islice
 from pprint import pprint
 
 
+def read_numbers_with_block(filename):
+    with open(filename, mode="rt", encoding="utf-8") as f:
+        return [ int(line.strip()) for line in f]
+
+
 def read_numbers_comprehension(filename):
     f = open(filename, mode="rt", encoding="utf-8")
     try:
         return [ int(line.strip()) for line in f]
     finally:
         f.close()
-
 
 
 def read_numbers_simple(filename):
@@ -28,7 +32,7 @@ def read_numbers_simple(filename):
 
 
 def print_numbers(filename):
-    numbers = read_numbers_comprehension(filename);
+    numbers = read_numbers_with_block(filename);
     print(numbers)
 
 

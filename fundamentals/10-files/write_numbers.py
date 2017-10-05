@@ -14,12 +14,12 @@ def numbers():
 
 
 def write_numbers(filename, count):
-    f = open(filename, mode="wt", encoding="utf-8")
-    f.writelines("{}\n".format(x) for x in islice(numbers(), count))
+    with open(filename, mode="wt", encoding="utf-8") as f:
+        f.writelines("{}\n".format(x) for x in islice(numbers(), count))
 
 
 def main():
-    write_numbers("numbers.txt", 10)
+    write_numbers("numbers.txt", 20)
 
 
 if __name__ == '__main__':

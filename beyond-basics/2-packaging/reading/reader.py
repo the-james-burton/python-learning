@@ -4,12 +4,12 @@
 import os
 import sys
 
-from reading.compressed import gzipped, bzipped
+from reading.compressed import *
 
 # note the use of first class function references...
 extension_map = {
-    '.bz2': bzipped.opener,
-    '.gz': gzipped.opener
+    '.bz2': bz2_open,
+    '.gz': gz_open
 }
 
 class Reader:

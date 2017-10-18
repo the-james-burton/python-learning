@@ -11,6 +11,8 @@ class Resolver:
         self._cache = {}
 
     def __call__(self, host):
+        """this special method is syntactic sugar for
+        directly calling this with Resolver(...)"""
         if host not in self._cache:
             self._cache[host] = socket.gethostbyname(host)
         return self._cache[host]

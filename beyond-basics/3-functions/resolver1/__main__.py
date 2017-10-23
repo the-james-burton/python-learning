@@ -11,7 +11,15 @@ def resolve_timed(func, param):
 
 
 resolve = resolver.Resolver()
+print(resolve.has('python.org'))
 resolve_timed(resolve, 'python.org')
 resolve_timed(resolve, 'python.org')
+print(resolve.has('python.org'))
 
 print(resolve._cache)
+resolve.clear()
+print(resolve._cache)
+print(resolve.has('python.org'))
+resolve_timed(resolve, 'python.org')
+resolve_timed(resolve, 'python.org')
+print(resolve.has('python.org'))

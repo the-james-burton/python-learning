@@ -20,5 +20,9 @@ try:
 except TypeError as e:
     print(e)
 
-arguments.print_args("hello", foo="woo", bar="yay")
+arguments.print_kwargs("hello", foo="woo", bar="yay")
 print(arguments.tag("a", href='/images/test.jpg', style='margin-top:1px'))
+
+t = (1,2,3,4,5)
+# note how the tuple is unpacked and spread across the arguments...
+arguments.print_args(*t)

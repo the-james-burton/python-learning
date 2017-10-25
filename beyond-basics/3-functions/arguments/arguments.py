@@ -17,11 +17,17 @@ def hypervolume2(first_length, *next_lengths):
         v *= l
     return v
 
-def print_args(arg, **kwargs):
+def print_kwargs(arg, **kwargs):
     """**kwargs is presented to this function as a dictionary"""
     print(arg)
     print(type(kwargs))
     print(kwargs)
+
+def print_args(arg1, arg2, *args):
+    """**kwargs is presented to this function as a dictionary"""
+    print(arg1)
+    print(arg2)
+    print(args)
 
 def tag(name, **attribs):
     result = ''

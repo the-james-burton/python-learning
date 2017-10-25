@@ -30,3 +30,7 @@ arguments.print_args(*t)
 # key names will be mapped onto the argument names in the function...
 c = {'blue':34, 'red':12, 'green':23, 'alpha':45}
 arguments.colour(**c)
+
+# dict() constructor will create dictionary from kwargs...
+d = dict(blue=98, red=87, green=65, alpha=56)
+arguments.colour(**d)

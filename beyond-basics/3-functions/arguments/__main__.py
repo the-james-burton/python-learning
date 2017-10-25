@@ -1,6 +1,6 @@
 print('functions...')
 
-
+from pprint import pprint
 import arguments
 
 print(arguments.hypervolume(2))
@@ -37,3 +37,21 @@ arguments.colour(**d)
 
 # the trace() function wraps the call to the int() constructor...
 arguments.trace(int, "ff", base=16)
+
+jan = [1,2,3]
+feb = [4,5,6]
+mar = [7,8,9]
+
+for i in zip(jan, feb, mar):
+    print(i)
+
+# list of lists...
+months = [jan, feb, mar]
+
+# without argument unpacking...
+for i in zip(months[0], months[1], months[2]):
+    print(i)
+
+# with argument unpacking...
+transposed = list(zip(*months))
+pprint(transposed)

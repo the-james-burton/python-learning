@@ -34,3 +34,6 @@ arguments.colour(**c)
 # dict() constructor will create dictionary from kwargs...
 d = dict(blue=98, red=87, green=65, alpha=56)
 arguments.colour(**d)
+
+# the trace() function wraps the call to the int() constructor...
+arguments.trace(int, "ff", base=16)

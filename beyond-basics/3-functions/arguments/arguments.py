@@ -41,3 +41,12 @@ def colour(red, green, blue, **kwargs):
     print("g = ", green)
     print("b = ", blue)
     print(kwargs)
+
+def trace(f, *args, **kwargs):
+    """any function and its arguments can be wrapped like this"""
+    print(f.__name__)
+    print("args=", args)
+    print("kargs=", kwargs)
+    result = f(*args, **kwargs)
+    print("result=", result)
+    return result

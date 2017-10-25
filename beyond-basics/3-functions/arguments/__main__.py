@@ -23,6 +23,10 @@ except TypeError as e:
 arguments.print_kwargs("hello", foo="woo", bar="yay")
 print(arguments.tag("a", href='/images/test.jpg', style='margin-top:1px'))
 
-t = (1,2,3,4,5)
 # note how the tuple is unpacked and spread across the arguments...
+t = (1,2,3,4,5)
 arguments.print_args(*t)
+
+# key names will be mapped onto the argument names in the function...
+c = {'blue':34, 'red':12, 'green':23, 'alpha':45}
+arguments.colour(**c)

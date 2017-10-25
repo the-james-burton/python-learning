@@ -35,3 +35,9 @@ def tag(name, **attribs):
         # this statement also uses keywords args...
         result += ' {k}="{v}"'.format(k=key, v=value)
     return '<{}{}>'.format(name, result)
+
+def colour(red, green, blue, **kwargs):
+    print("r = ", red)
+    print("g = ", green)
+    print("b = ", blue)
+    print(kwargs)

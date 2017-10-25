@@ -16,3 +16,9 @@ def hypervolume2(first_length, *next_lengths):
     for l in next_lengths:
         v *= l
     return v
+
+def print_args(arg, **kwargs):
+    """**kwargs is presented to this function as a dictionary"""
+    print(arg)
+    print(type(kwargs))
+    print(kwargs)

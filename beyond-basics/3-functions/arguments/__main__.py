@@ -20,4 +20,4 @@ try:
 except TypeError as e:
     print(e)
 
-
+arguments.print_args("hello", foo="woo", bar="yay")

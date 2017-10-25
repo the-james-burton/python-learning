@@ -22,3 +22,10 @@ def print_args(arg, **kwargs):
     print(arg)
     print(type(kwargs))
     print(kwargs)
+
+def tag(name, **attribs):
+    result = ''
+    for key, value in attribs.items():
+        # this statement also uses keywords args...
+        result += ' {k}="{v}"'.format(k=key, v=value)
+    return '<{}{}>'.format(name, result)

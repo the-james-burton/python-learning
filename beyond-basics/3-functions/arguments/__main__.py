@@ -21,3 +21,4 @@ except TypeError as e:
     print(e)
 
 arguments.print_args("hello", foo="woo", bar="yay")
+print(arguments.tag("a", href='/images/test.jpg', style='margin-top:1px'))

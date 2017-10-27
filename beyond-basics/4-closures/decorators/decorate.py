@@ -67,3 +67,14 @@ tracer = Trace()
 @tracer
 def rotate_list(l):
     return l[1:] + [l[0]]
+
+
+
+# ========================================
+# instances as decorators
+# ========================================
+@tracer
+@escape_unicode
+def norge_it(text):
+    """decorators applied going up"""
+    return text + 'øy'

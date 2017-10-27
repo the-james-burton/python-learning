@@ -1,3 +1,6 @@
+# ========================================
+# functions as decorators
+# ========================================
 def escape_unicode(f):
     def wrap(*args, **kwargs):
         x = f(*args, **kwargs)
@@ -17,6 +20,9 @@ def get_city2():
     return city
 
 
+# ========================================
+# classes as decorators
+# ========================================
 class CallCount:
     def __init__(self, f):
         self.f = f
@@ -35,3 +41,28 @@ class CallCount:
 def hello(name):
     print('Hello, {}'.format(name))
 
+
+# ========================================
+# instances as decorators
+# ========================================
+class Trace:
+    def __init__(self):
+        self.enabled = True
+
+    def __call__(self, f):
+        def wrap(*args, **kwargs):
+            if self.enabled:
+                print('Calling {}'.format(f))
+                result = f(*args, **kwargs)
+                print('Called {}'.format(f))
+            return result
+        return wrap
+
+# this is the difference here
+# see that an instance name is used
+# as decorator and not the class name
+tracer = Trace()
+
+@tracer
+def rotate_list(l):
+    return l[1:] + [l[0]]

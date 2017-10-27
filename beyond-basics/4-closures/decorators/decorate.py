@@ -83,3 +83,18 @@ def rotate_list(l):
 def norge_it(text):
     """decorators applied going up"""
     return text + 'øy'
+
+
+# ========================================
+# decorator factory
+# ========================================
+def extend_it(suffix):
+    def modifier(f):
+        def wrap(text):
+            return f(text + suffix)
+        return wrap
+    return modifier
+
+@extend_it(' world')
+def world_it(text):
+    return text

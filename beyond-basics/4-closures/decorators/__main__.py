@@ -1,7 +1,7 @@
 print('decorators...')
 
 from pprint import pprint
-from decorators.decorate import get_city, get_city2, hello, tracer, rotate_list, norge_it
+from decorators.decorate import get_city, get_city2, hello, tracer, rotate_list, norge_it, world_it
 
 print(get_city())
 print(get_city2())
@@ -27,3 +27,4 @@ print(norge_it("Turtle"))
 tracer.enabled = False
 print(norge_it("Terapin"))
 
+print(world_it('hello'))

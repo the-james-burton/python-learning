@@ -1,7 +1,12 @@
+import functools
+
 # ========================================
 # functions as decorators
 # ========================================
 def escape_unicode(f):
+    # use this to copy the called functions metadata
+    # to this function...
+    @functools.wraps(f)
     def wrap(*args, **kwargs):
         x = f(*args, **kwargs)
         return ascii(x)

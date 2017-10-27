@@ -6,6 +6,8 @@ from decorators.decorate import get_city, get_city2, hello, tracer, rotate_list,
 print(get_city())
 print(get_city2())
 
+print(get_city2.__name__)
+
 hello('Mary')
 hello('Norma')
 hello('Oscar')
@@ -24,3 +26,4 @@ tracer.enabled = True
 print(norge_it("Turtle"))
 tracer.enabled = False
 print(norge_it("Terapin"))
+

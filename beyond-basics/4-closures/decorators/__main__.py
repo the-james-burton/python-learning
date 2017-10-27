@@ -20,4 +20,7 @@ tracer.enabled = False
 numbers = rotate_list(numbers)
 pprint(numbers)
 
+tracer.enabled = True
 print(norge_it("Turtle"))
+tracer.enabled = False
+print(norge_it("Terapin"))

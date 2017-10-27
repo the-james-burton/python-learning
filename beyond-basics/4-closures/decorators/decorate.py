@@ -53,7 +53,8 @@ class Trace:
         def wrap(*args, **kwargs):
             if self.enabled:
                 print('Calling {}'.format(f))
-                result = f(*args, **kwargs)
+            result = f(*args, **kwargs)
+            if self.enabled:
                 print('Called {}'.format(f))
             return result
         return wrap

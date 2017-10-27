@@ -16,6 +16,7 @@ numbers = [1,2,3]
 pprint(numbers)
 numbers = rotate_list(numbers)
 pprint(numbers)
+tracer.enabled = False
 numbers = rotate_list(numbers)
 pprint(numbers)
 

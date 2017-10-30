@@ -24,6 +24,12 @@ class ShippingContainer:
         return cls(owner, contents=None)
 
 
+    @classmethod
+    def create_with_items(cls, owner, items):
+        # this is a factory method...
+        return cls(owner, contents=list(items))
+
+
     def __init__(self, owner, contents):
         self.owner = owner
         self.contents = contents

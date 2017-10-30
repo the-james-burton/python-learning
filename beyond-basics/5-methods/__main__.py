@@ -16,3 +16,6 @@ print_container(c2)
 c3 = ShippingContainer.create_empty('GHI')
 print_container(c3)
 
+c4 = ShippingContainer.create_with_items('JKL', ['Dogs', 'Cats', 'Rain'])
+print_container(c4)
+

@@ -11,6 +11,12 @@ class ShippingContainer:
         ShippingContainer.next_serial += 1
         return result
 
+    @classmethod
+    def _get_next_serial2(cls):
+        result = cls.next_serial
+        cls.next_serial += 1
+        return result
+
 
     def __init__(self, owner, contents):
         self.owner = owner
@@ -21,3 +27,5 @@ class ShippingContainer:
         ShippingContainer.next_serial += 1
         #... or use the static method...
         self.serial = ShippingContainer._get_next_serial()
+        #... or use the class method...
+        self.serial = ShippingContainer._get_next_serial2()

@@ -2,5 +2,14 @@ print('methods...')
 
 from shipping import *
 
+def print_container(container):
+    print("owner={}, contents={}, serial={}".format(
+        container.owner, container.contents, container.serial))
+
+
 c1 = ShippingContainer('ABC', 'Toys')
-print(c1.owner)
+print_container(c1)
+
+c2 = ShippingContainer('DEF', 'Umbrellas')
+print_container(c2)
+

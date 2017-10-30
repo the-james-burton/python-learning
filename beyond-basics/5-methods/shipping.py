@@ -5,7 +5,8 @@ class ShippingContainer:
 
 
     @staticmethod
-    def _get_next_serial(self):
+    def _get_next_serial():
+        # note there is no 'self' argument
         result = ShippingContainer.next_serial
         ShippingContainer.next_serial += 1
         return result
@@ -19,4 +20,4 @@ class ShippingContainer:
         self.serial = ShippingContainer.next_serial
         ShippingContainer.next_serial += 1
         #... or use the static method...
-        self.serial = ShippingContainer._get_next_serial(self)
+        self.serial = ShippingContainer._get_next_serial()

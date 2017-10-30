@@ -13,3 +13,6 @@ print_container(c1)
 c2 = ShippingContainer('DEF', 'Umbrellas')
 print_container(c2)
 
+c3 = ShippingContainer.create_empty('GHI')
+print_container(c3)
+

@@ -18,6 +18,12 @@ class ShippingContainer:
         return result
 
 
+    @classmethod
+    def create_empty(cls, owner):
+        # this is a factory method...
+        return cls(owner, contents=None)
+
+
     def __init__(self, owner, contents):
         self.owner = owner
         self.contents = contents

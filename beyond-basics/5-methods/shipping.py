@@ -39,9 +39,22 @@ class ShippingContainer:
         self.contents = contents
         # can call it directly...
         # next_serial is not in the LEGB scopes, so must be qualified...
-        self.serial = ShippingContainer.next_serial
-        ShippingContainer.next_serial += 1
+        # self.serial = ShippingContainer.next_serial
+        # ShippingContainer.next_serial += 1
         #... or use the static method...
-        self.serial = ShippingContainer._get_next_serial_random()
+        # (to get polymophic dispatch of static methods, use the instance)
+        # self.serial = ShippingContainer._get_next_serial_random()
+        self.serial = self._get_next_serial_random()
         #... or use the class method...
         # self.serial = ShippingContainer._get_next_incremented()
+
+
+class RefrigeratedShippingContainer(ShippingContainer):
+
+    @staticmethod
+    def _get_next_serial_random():
+        # note there is no 'self' argument
+        # static methods should be used when no access to the class is required
+        # i.e. a 'pure' function that depends only on its arguments...
+        return random.randint(9999, 19999)
+

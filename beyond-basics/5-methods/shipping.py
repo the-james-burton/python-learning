@@ -55,6 +55,14 @@ class RefrigeratedShippingContainer(ShippingContainer):
     MAX_CELSIUS = 3.0
 
     @staticmethod
+    def _c_to_f(celsius):
+        return celsius * 9/5 + 32
+
+    @staticmethod
+    def _f_to_c(fahrenheit):
+        return (fahrenheit - 32) * 5/9
+
+    @staticmethod
     def _get_next_serial_random():
         # note there is no 'self' argument
         # static methods should be used when no access to the class is required
@@ -65,9 +73,7 @@ class RefrigeratedShippingContainer(ShippingContainer):
         """overriding the base class"""
         # first call the base class init to do the same work...
         super().__init__(owner, contents)
-        if celsius > RefrigeratedShippingContainer.MAX_CELSIUS:
-            raise ValueError("{} is too hot!".format(celsius))
-        self._celsius = celsius
+        self.celsius = celsius
 
     @property
     def celsius(self):
@@ -78,3 +84,11 @@ class RefrigeratedShippingContainer(ShippingContainer):
         if temp > RefrigeratedShippingContainer.MAX_CELSIUS:
             raise ValueError("{} is too hot!".format(temp))
         self._celsius = temp
+
+    @property
+    def fahrenheit(self):
+        return RefrigeratedShippingContainer._c_to_f(self.celsius)
+
+    @fahrenheit.setter
+    def fahrenheit(self, value):
+        self.celsius = RefrigeratedShippingContainer._f_to_c(value)

@@ -32,4 +32,5 @@ rc4 = RefrigeratedShippingContainer.create_with_items('JKL', ['Butter', 'Cheese'
 print_container(rc4)
 
 rc4.celsius = 1.0
+print(rc4.fahrenheit)
 rc4.celsius = 5.0

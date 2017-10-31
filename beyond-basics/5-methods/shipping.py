@@ -23,15 +23,16 @@ class ShippingContainer:
 
 
     @classmethod
-    def create_empty(cls, owner):
+    def create_empty(cls, owner, *args, **kwargs):
         # this is a factory method...
-        return cls(owner, contents=None)
+        # use *args and **kwargs to forward any extra args to the subclass __init__
+        return cls(owner, contents=None, *args, **kwargs)
 
 
     @classmethod
-    def create_with_items(cls, owner, items):
+    def create_with_items(cls, owner, items, *args, **kwargs):
         # this is a factory method...
-        return cls(owner, contents=list(items))
+        return cls(owner, contents=list(items), *args, **kwargs)
 
 
     def __init__(self, owner, contents):
@@ -51,6 +52,8 @@ class ShippingContainer:
 
 class RefrigeratedShippingContainer(ShippingContainer):
 
+    MAX_CELSIUS = 3.0
+
     @staticmethod
     def _get_next_serial_random():
         # note there is no 'self' argument
@@ -58,3 +61,10 @@ class RefrigeratedShippingContainer(ShippingContainer):
         # i.e. a 'pure' function that depends only on its arguments...
         return random.randint(9999, 19999)
 
+    def __init__(self, owner, contents, celsius):
+        """overriding the base class"""
+        # first call the base class init to do the same work...
+        super().__init__(owner, contents)
+        if celsius > RefrigeratedShippingContainer.MAX_CELSIUS:
+            raise ValueError("{} is too hot!".format(celsius))
+        self.celsius = celsius

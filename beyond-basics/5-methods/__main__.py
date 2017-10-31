@@ -31,6 +31,13 @@ print_container(rc3)
 rc4 = RefrigeratedShippingContainer.create_with_items('JKL', ['Butter', 'Cheese', 'Cream'], celsius=1.5)
 print_container(rc4)
 
+try:
+    rc4.celsius = 5.0
+except ValueError as e:
+    print(e)
+
 rc4.celsius = 1.0
 print(rc4.fahrenheit)
-rc4.celsius = 5.0
+rc4.fahrenheit = 32.5
+print(rc4.celsius)
+

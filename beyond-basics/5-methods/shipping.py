@@ -92,3 +92,20 @@ class RefrigeratedShippingContainer(ShippingContainer):
     @fahrenheit.setter
     def fahrenheit(self, value):
         self.celsius = RefrigeratedShippingContainer._f_to_c(value)
+
+
+class HeatedRefrigeratedShippingContainer(RefrigeratedShippingContainer):
+
+    MIN_CELSIUS = -20.0
+
+    @staticmethod
+    def _get_next_serial_random():
+        return random.randint(19999, 29999)
+
+    @RefrigeratedShippingContainer.celsius.setter
+    def celsius(self, temp):
+        if temp < HeatedRefrigeratedShippingContainer.MIN_CELSIUS:
+            raise ValueError("{} is too cold!".format(temp))
+        # note: super().celsius does not work!
+        # instead, we use a function from the celsius property...
+        RefrigeratedShippingContainer.celsius.fset(self, temp)

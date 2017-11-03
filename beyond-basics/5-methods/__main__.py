@@ -41,3 +41,24 @@ print(rc4.fahrenheit)
 rc4.fahrenheit = 32.5
 print(rc4.celsius)
 
+
+hrc1 = HeatedRefrigeratedShippingContainer('JKL', 'Meat', celsius=2.8)
+print_container(hrc1)
+
+try:
+    hrc1.celsius = -30.0
+except ValueError as e:
+    print(e)
+
+try:
+    hrc1.celsius = 15.0
+except ValueError as e:
+    print(e)
+
+
+try:
+    # this works because the fahrenheit setter
+    # delegates to the celsius property setter...
+    hrc1.fahrenheit = -55.0
+except ValueError as e:
+    print(e)

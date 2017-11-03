@@ -5,6 +5,8 @@ class ShippingContainer:
 
     next_serial = 1234
 
+    HEIGHT = 8.5
+    WIDTH = 8.0
 
     @staticmethod
     def _get_next_serial_random():
@@ -21,22 +23,20 @@ class ShippingContainer:
         cls.next_serial += 1
         return result
 
-
     @classmethod
-    def create_empty(cls, owner, *args, **kwargs):
+    def create_empty(cls, owner, length, *args, **kwargs):
         # this is a factory method...
         # use *args and **kwargs to forward any extra args to the subclass __init__
-        return cls(owner, contents=None, *args, **kwargs)
-
+        return cls(owner, length, contents=None, *args, **kwargs)
 
     @classmethod
-    def create_with_items(cls, owner, items, *args, **kwargs):
+    def create_with_items(cls, owner, length, items, *args, **kwargs):
         # this is a factory method...
-        return cls(owner, contents=list(items), *args, **kwargs)
+        return cls(owner, length, contents=list(items), *args, **kwargs)
 
-
-    def __init__(self, owner, contents):
+    def __init__(self, owner, length, contents):
         self.owner = owner
+        self.length = length
         self.contents = contents
         # can call it directly...
         # next_serial is not in the LEGB scopes, so must be qualified...
@@ -49,10 +49,15 @@ class ShippingContainer:
         #... or use the class method...
         # self.serial = ShippingContainer._get_next_incremented()
 
+    @property
+    def volume(self):
+        return ShippingContainer.HEIGHT * ShippingContainer.WIDTH * self.length
+
 
 class RefrigeratedShippingContainer(ShippingContainer):
 
     MAX_CELSIUS = 3.0
+    FRIDGE_VOLUME = 100.0
 
     @staticmethod
     def _c_to_f(celsius):
@@ -69,10 +74,10 @@ class RefrigeratedShippingContainer(ShippingContainer):
         # i.e. a 'pure' function that depends only on its arguments...
         return random.randint(9999, 19999)
 
-    def __init__(self, owner, contents, celsius):
+    def __init__(self, owner, length, contents, celsius):
         """overriding the base class"""
         # first call the base class init to do the same work...
-        super().__init__(owner, contents)
+        super().__init__(owner, length, contents)
         self.celsius = celsius
 
     @property
@@ -92,6 +97,11 @@ class RefrigeratedShippingContainer(ShippingContainer):
     @fahrenheit.setter
     def fahrenheit(self, value):
         self.celsius = RefrigeratedShippingContainer._f_to_c(value)
+
+    @property
+    def volume(self):
+        # overriden property...
+        return super().volume - RefrigeratedShippingContainer.FRIDGE_VOLUME
 
 
 class HeatedRefrigeratedShippingContainer(RefrigeratedShippingContainer):

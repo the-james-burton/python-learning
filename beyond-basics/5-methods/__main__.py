@@ -3,32 +3,33 @@ print('methods...')
 from shipping import *
 
 def print_container(container):
-    print("owner={}, contents={}, serial={}".format(
-        container.owner, container.contents, container.serial))
+    # volume is a property, although this is not directly visible here...
+    print("owner={}, length={}, volume={}, contents={}, serial={}".format(
+        container.owner, container.length, container.volume, container.contents, container.serial))
 
 
-c1 = ShippingContainer('ABC', 'Toys')
+c1 = ShippingContainer('ABC', 20, 'Toys')
 print_container(c1)
 
-c2 = ShippingContainer('DEF', 'Umbrellas')
+c2 = ShippingContainer('DEF', 10, 'Umbrellas')
 print_container(c2)
 
-c3 = ShippingContainer.create_empty('GHI')
+c3 = ShippingContainer.create_empty('GHI', 20)
 print_container(c3)
 
-c4 = ShippingContainer.create_with_items('JKL', ['Dogs', 'Cats', 'Rain'])
+c4 = ShippingContainer.create_with_items('JKL', 20, ['Dogs', 'Cats', 'Rain'])
 print_container(c4)
 
-rc1 = RefrigeratedShippingContainer('JKL', 'Meat', celsius=2.8)
+rc1 = RefrigeratedShippingContainer('JKL', 20, 'Meat', celsius=2.8)
 print_container(rc1)
 
-rc2 = RefrigeratedShippingContainer('JKL', 'Ice Cubes', celsius=1.2)
+rc2 = RefrigeratedShippingContainer('JKL', 20, 'Ice Cubes', celsius=1.2)
 print_container(rc2)
 
-rc3 = RefrigeratedShippingContainer.create_empty('JKL', celsius=2.5)
+rc3 = RefrigeratedShippingContainer.create_empty('JKL', 20, celsius=2.5)
 print_container(rc3)
 
-rc4 = RefrigeratedShippingContainer.create_with_items('JKL', ['Butter', 'Cheese', 'Cream'], celsius=1.5)
+rc4 = RefrigeratedShippingContainer.create_with_items('JKL', 20, ['Butter', 'Cheese', 'Cream'], celsius=1.5)
 print_container(rc4)
 
 try:
@@ -42,7 +43,7 @@ rc4.fahrenheit = 32.5
 print(rc4.celsius)
 
 
-hrc1 = HeatedRefrigeratedShippingContainer('JKL', 'Meat', celsius=2.8)
+hrc1 = HeatedRefrigeratedShippingContainer('JKL', 20, 'Meat', celsius=2.8)
 print_container(hrc1)
 
 try:

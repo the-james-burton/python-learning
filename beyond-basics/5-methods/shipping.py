@@ -51,6 +51,10 @@ class ShippingContainer:
 
     @property
     def volume(self):
+        return self._calc_volume()
+
+    def _calc_volume(self):
+        # this is a template method implementation...
         return ShippingContainer.HEIGHT * ShippingContainer.WIDTH * self.length
 
 
@@ -86,6 +90,11 @@ class RefrigeratedShippingContainer(ShippingContainer):
 
     @celsius.setter
     def celsius(self, temp):
+        # delete to template method that can be overriden...
+        self._set_celsius(temp)
+
+    def _set_celsius(self, temp):
+        # another template method...
         if temp > RefrigeratedShippingContainer.MAX_CELSIUS:
             raise ValueError("{} is too hot!".format(temp))
         self._celsius = temp
@@ -103,6 +112,10 @@ class RefrigeratedShippingContainer(ShippingContainer):
         # overriden property...
         return super().volume - RefrigeratedShippingContainer.FRIDGE_VOLUME
 
+    def _calc_volume(self):
+        # overriden template method...
+        return super()._calc_volume() - RefrigeratedShippingContainer.FRIDGE_VOLUME
+
 
 class HeatedRefrigeratedShippingContainer(RefrigeratedShippingContainer):
 
@@ -112,10 +125,17 @@ class HeatedRefrigeratedShippingContainer(RefrigeratedShippingContainer):
     def _get_next_serial_random():
         return random.randint(19999, 29999)
 
-    @RefrigeratedShippingContainer.celsius.setter
-    def celsius(self, temp):
-        if temp < HeatedRefrigeratedShippingContainer.MIN_CELSIUS:
-            raise ValueError("{} is too cold!".format(temp))
+    # overriding setters in python is ugly
+    # so we prefer template methods...
+    #@RefrigeratedShippingContainer.celsius.setter
+    #def celsius(self, temp):
+    #    if temp < HeatedRefrigeratedShippingContainer.MIN_CELSIUS:
+    #        raise ValueError("{} is too cold!".format(temp))
         # note: super().celsius does not work!
         # instead, we use a function from the celsius property...
-        RefrigeratedShippingContainer.celsius.fset(self, temp)
+    #    RefrigeratedShippingContainer.celsius.fset(self, temp)
+
+    def _set_celsius(self, temp):
+        if temp < HeatedRefrigeratedShippingContainer.MIN_CELSIUS:
+            raise ValueError("{} is too cold!".format(temp))
+        super()._set_celsius(temp)

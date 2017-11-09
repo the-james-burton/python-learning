@@ -57,6 +57,11 @@ class ShippingContainer:
         # this is a template method implementation...
         return ShippingContainer.HEIGHT * ShippingContainer.WIDTH * self.length
 
+    def __str__(container):
+        # volume is a property, although this is not directly visible here...
+        return "owner={}, length={}, volume={}, contents={}, serial={}".format(
+            container.owner, container.length, container.volume, container.contents, container.serial)
+
 
 class RefrigeratedShippingContainer(ShippingContainer):
 

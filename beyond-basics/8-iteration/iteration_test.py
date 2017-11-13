@@ -33,6 +33,14 @@ class IterationTest(unittest.TestCase):
         print(values_from_loop)
         self.assertEqual(values_from_comprehension, values_from_loop)
 
+
+    def test_map(self):
+        names = ['Alice', 'Bob', 'Chuck']
+        result = map(lambda n : "Hello {}!".format(n), names)
+        print(next(result))
+        print(next(result))
+        print(next(result))
+
 if __name__  == '__main__':
     """run all tests in this module"""
     unittest.main()

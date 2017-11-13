@@ -9,7 +9,7 @@ class IterationTest(unittest.TestCase):
     # def setUp(self):
     # def tearDown(self):
 
-    def test_big_comprehension(self):
+    def test_comprehension_equilavancy(self):
         values_from_comprehension = [x / (x - y) for x in range(10) if x > 5 for y in range(10) if x - y != 0]
         values_from_loop = []
         for x in range(10):
@@ -17,6 +17,18 @@ class IterationTest(unittest.TestCase):
                 for y in range(10):
                     if x - y != 0:
                         values_from_loop.append(x / (x - y))
+        print(values_from_comprehension)
+        print(values_from_loop)
+        self.assertEqual(values_from_comprehension, values_from_loop)
+
+    def test_nested_comprehensions(self):
+        values_from_comprehension = [ [y * 3 for y in range(x)] for x in range(10)]
+        values_from_loop = []
+        for x in range(10):
+            inner = []
+            for y in range(x):
+                inner.append(y * 3)
+            values_from_loop.append(inner)
         print(values_from_comprehension)
         print(values_from_loop)
         self.assertEqual(values_from_comprehension, values_from_loop)

@@ -36,10 +36,19 @@ class IterationTest(unittest.TestCase):
 
     def test_map(self):
         names = ['Alice', 'Bob', 'Chuck']
-        result = map(lambda n : "Hello {}!".format(n), names)
-        print(next(result))
-        print(next(result))
-        print(next(result))
+        # note that map is lazy, so we wrap in list constructor to force evaluation...
+        values_from_map = list(map(lambda n : "Hello {}!".format(n), names))
+        values_from_comprehension = ["Hello {}!".format(n) for n in names]
+        values_from_loop = []
+        for n in names:
+            values_from_loop.append("Hello {}!".format(n))
+        print(values_from_map)
+        print(values_from_comprehension)
+        print(values_from_loop)
+        self.assertEqual(values_from_map, values_from_comprehension)
+        self.assertEqual(values_from_comprehension, values_from_loop)
+        self.assertEqual(values_from_map, values_from_loop)
+
 
 if __name__  == '__main__':
     """run all tests in this module"""

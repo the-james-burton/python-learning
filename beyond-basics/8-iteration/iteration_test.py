@@ -2,6 +2,8 @@
 """shipping test"""
 
 import unittest
+import functools
+import operator
 from pprint import pprint
 
 class IterationTest(unittest.TestCase):
@@ -49,6 +51,15 @@ class IterationTest(unittest.TestCase):
         self.assertEqual(values_from_comprehension, values_from_loop)
         self.assertEqual(values_from_map, values_from_loop)
 
+        surnames = ['Xavier', 'Yap', 'Zahn']
+        values_from_map = list(map(lambda n : "Hello {} {}!".format(n[0], n[1]), names, surnames))
+        print(values_from_map)
+
+
+    def test_functools_reduce(self):
+        values = [1,2,3,4,5,6,7,8,9]
+        result = functools.reduce(operator.add, values)
+        pprint(result)
 
 if __name__  == '__main__':
     """run all tests in this module"""

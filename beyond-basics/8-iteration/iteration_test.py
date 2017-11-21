@@ -3,7 +3,11 @@
 
 import unittest
 import functools
+import itertools
 import operator
+import datetime
+import time
+from sensor import Sensor
 from pprint import pprint
 
 class IterationTest(unittest.TestCase):
@@ -55,6 +59,20 @@ class IterationTest(unittest.TestCase):
         # multiple inputs are sent to the mapping function as arguments...
         values_from_map = list(map(self.say_hello, names, surnames))
         print(values_from_map)
+
+
+    def test_sensor(self):
+        sensor = Sensor()
+        # this is the extended iterator syntax
+        # using a sentinel which is never true
+        # to produce and infinite sequence...
+        timestamps = iter(datetime.datetime.now, None)
+        # we can zip the timestamps and sensor data together
+        # to produce an infinite sequence which we can
+        # use with islice...
+        for stamp, value in itertools.islice(zip(timestamps, sensor), 3):
+            print(stamp, value)
+            time.sleep(1)
 
 
     def say_hello(self, name, surname):

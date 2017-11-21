@@ -43,6 +43,9 @@ class IntList(SimpleList):
 
     def add(self, item):
         self._validate(item)
+        # this super() calls the first available method
+        # declared to the right of this class
+        # in the C3 MRO for the instance
         super().add(item)
 
     def __repr__(self):

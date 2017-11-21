@@ -13,6 +13,16 @@ class SortedListTest(unittest.TestCase):
         sl.add(7)
         pprint(sl)
 
+
+    def test_int_list(self):
+        il = sorted_list.IntList([4,2,7,5])
+        pprint(il)
+        il.add(1)
+        pprint(il)
+        with self.assertRaises(TypeError):
+            il.add("banana")
+
+
 if __name__  == '__main__':
     """run all tests in this module"""
     unittest.main()

@@ -65,8 +65,14 @@ class IterationTest(unittest.TestCase):
 
     def test_functools_reduce(self):
         values = [1,2,3,4,5,6,7,8,9]
-        result = functools.reduce(operator.add, values)
+        result = functools.reduce(self.show_add, values)
         pprint(result)
+
+
+    def show_add(self, a, b):
+        result = operator.add(a, b)
+        print("add({},{}):{}".format(a, b, result))
+        return result
 
 
 if __name__  == '__main__':

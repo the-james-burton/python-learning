@@ -47,3 +47,9 @@ class IntList(SimpleList):
 
     def __repr__(self):
         return "IntList({!r})".format(list(self))
+
+
+
+class SortedIntList(IntList, SortedList):
+    def __repr__(self):
+        return 'SortedIntList({!r})'.format(list(self))

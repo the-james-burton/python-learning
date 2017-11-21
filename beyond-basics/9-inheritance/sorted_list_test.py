@@ -22,6 +22,14 @@ class SortedListTest(unittest.TestCase):
         with self.assertRaises(TypeError):
             il.add("banana")
 
+    def test_sorted_int_list(self):
+        sil = sorted_list.SortedIntList([6,2,8,4,9,1])
+        pprint(sil)
+        sil.add(7)
+        pprint(sil)
+        with self.assertRaises(TypeError):
+            sil.add("banana")
+
 
 if __name__  == '__main__':
     """run all tests in this module"""

@@ -52,14 +52,22 @@ class IterationTest(unittest.TestCase):
         self.assertEqual(values_from_map, values_from_loop)
 
         surnames = ['Xavier', 'Yap', 'Zahn']
-        values_from_map = list(map(lambda n : "Hello {} {}!".format(n[0], n[1]), names, surnames))
+        # multiple inputs are sent to the mapping function as arguments...
+        values_from_map = list(map(self.say_hello, names, surnames))
         print(values_from_map)
+
+
+    def say_hello(self, name, surname):
+        # multiple arguments to lambda are not supported,
+        # so we declare a function
+        return "Hello {} {}!".format(name, surname)
 
 
     def test_functools_reduce(self):
         values = [1,2,3,4,5,6,7,8,9]
         result = functools.reduce(operator.add, values)
         pprint(result)
+
 
 if __name__  == '__main__':
     """run all tests in this module"""

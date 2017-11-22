@@ -22,6 +22,7 @@ class SortedListTest(unittest.TestCase):
         with self.assertRaises(TypeError):
             il.add("banana")
 
+
     def test_sorted_int_list(self):
         sil = sorted_list.SortedIntList([6,2,8,4,9,1])
         pprint(sil)
@@ -32,7 +33,16 @@ class SortedListTest(unittest.TestCase):
 
 
     def test_super_proxy(self):
+        pprint(sorted_list.SortedIntList.mro())
         validate = super(sorted_list.SortedIntList, sorted_list.SortedIntList)._validate
+        print(validate(8))
+        with self.assertRaises(TypeError):
+            validate("banana")
+
+
+    def test_instance_super_proxy(self):
+        sil = sorted_list.SortedIntList([6,2,8,4,9,1])
+        validate = super(sorted_list.SortedIntList, sil)._validate
         print(validate(8))
         with self.assertRaises(TypeError):
             validate("banana")

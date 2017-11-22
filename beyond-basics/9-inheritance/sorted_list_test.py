@@ -31,6 +31,13 @@ class SortedListTest(unittest.TestCase):
             sil.add("banana")
 
 
+    def test_super_proxy(self):
+        validate = super(sorted_list.SortedIntList, sorted_list.SortedIntList)._validate
+        print(validate(8))
+        with self.assertRaises(TypeError):
+            validate("banana")
+
+
 if __name__  == '__main__':
     """run all tests in this module"""
     unittest.main()

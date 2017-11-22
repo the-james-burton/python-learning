@@ -21,3 +21,6 @@ class TestConstruction(unittest.TestCase):
             yield 2
         g = gen6842()
         s = SortedSet(g)
+
+    def test_default_empty(self):
+        s = SortedSet()

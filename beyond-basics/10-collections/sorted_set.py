@@ -21,5 +21,18 @@ class SortedSet:
 
     def __getitem__(self, index):
         """implements the iterable protocol"""
-        # note slicing not yet implemented
-        return self._items[index]
+        result = self._items[index]
+        return SortedSet(result) if isinstance(index, slice) else result
+
+    def __repr__(self):
+        """implements the repr protocol"""
+        return "SortedSet({})".format(
+            repr(self._items) if self._items else ''
+        )
+
+    def __eq__(self, other):
+        if not isinstance(other, SortedSet):
+            # note that we don't raise the exception ourselves
+            # since python will raise it for us...
+            return NotImplemented
+        return self._items == other._items

@@ -61,3 +61,26 @@ class TestSizedProtocol(unittest.TestCase):
     def test_with_duplicates(self):
         s = SortedSet([5, 5, 5])
         self.assertEqual(len(s), 1)
+
+
+class TestIterableProtocol(unittest.TestCase):
+
+    def setUp(self):
+        self.s = SortedSet([7, 2, 1, 1, 9])
+
+    def test_iter(self):
+        i = iter(self.s)
+        self.assertEqual(next(i), 1)
+        self.assertEqual(next(i), 2)
+        self.assertEqual(next(i), 7)
+        self.assertEqual(next(i), 9)
+        # this lambda is needed to allow the assertRaises
+        # function to call the next() instead of our code...
+        self.assertRaises(StopIteration, lambda: next(i))
+
+    def test_for_loop(self):
+        index = 0
+        expected = [1, 2, 7, 9]
+        for item in self.s:
+            self.assertEqual(item, expected[index])
+            index += 1

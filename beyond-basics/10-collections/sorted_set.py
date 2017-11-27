@@ -1,6 +1,9 @@
 from collections.abc import Sequence
 
 class SortedSet(Sequence):
+    """we inherit from Sequence to gain default implementations
+    of index() and count(), see this page for more details
+    https://docs.python.org/3.5/library/collections.abc.html"""
 
     def __init__(self, items=None):
         """if no starting list is given, then initialize

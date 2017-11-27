@@ -36,3 +36,9 @@ class SortedSet:
             # since python will raise it for us...
             return NotImplemented
         return self._items == other._items
+
+    def __ne__(self, other):
+        if not isinstance(other, SortedSet):
+            # the docs say we need to implement this...
+            return NotImplemented
+        return self._items != other._items

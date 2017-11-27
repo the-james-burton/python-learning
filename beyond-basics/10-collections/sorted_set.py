@@ -13,9 +13,13 @@ class SortedSet:
         """implements the sized protocol"""
         return len(self._items)
 
-
     def __iter__(self):
         """implements the iterable protocol"""
         return iter(self._items)
         # to use a generator, it would look like this...
         # for item in self._items: yield item
+
+    def __getitem__(self, index):
+        """implements the iterable protocol"""
+        # note slicing not yet implemented
+        return self._items[index]

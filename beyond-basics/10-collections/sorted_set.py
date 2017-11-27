@@ -13,7 +13,13 @@ class SortedSet(Sequence):
 
     def __contains__(self, item):
         """implements the container protocol"""
-        return item in self._items
+        # return item in self._items
+        # improved performance version over the Sequence default implementation
+        # This version is O(log n) instead of O(n) achieved by taking advantage
+        # of the fact that each item can only appear once in the list, therefore
+        # count can never be more than 1...
+        index = bisect.bisect_left(self._items, item)
+        return (index != len(self._items)) and (self._items[index] == item)
 
     def __len__(self):
         """implements the sized protocol"""
@@ -50,10 +56,4 @@ class SortedSet(Sequence):
         return self._items != other._items
 
     def count(self, item):
-        """improved performance version over the Sequence default implementation
-        This version is O(log n) instead of O(n) achieved by taking advantage
-        of the fact that each item can only appear once in the list, therefore
-        count can never be more than 1"""
-        index = bisect.bisect_left(self._items, item)
-        found = (index != len(self._items)) and (self._items[index] == item)
-        return int(found)
+        return int(item in self)

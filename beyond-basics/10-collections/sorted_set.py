@@ -1,4 +1,6 @@
-class SortedSet:
+from collections.abc import Sequence
+
+class SortedSet(Sequence):
 
     def __init__(self, items=None):
         """if no starting list is given, then initialize

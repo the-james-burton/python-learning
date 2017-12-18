@@ -78,3 +78,9 @@ class SortedSet(Sequence):
 
     def __add__(self, other):
         return SortedSet(chain(self._items, other._items))
+
+    def __mul__(self, times):
+        return self if times > 0 else SortedSet()
+
+    def __rmul__(self, times):
+        return self * times;

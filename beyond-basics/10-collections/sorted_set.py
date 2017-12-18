@@ -1,8 +1,9 @@
 import bisect
-from collections.abc import Sequence
+from collections.abc import Sequence, Set
 from itertools import chain
 
-class SortedSet(Sequence):
+
+class SortedSet(Sequence, Set):
     """ There is no longer any strict need to inherit from
     Sequence. We have now implemented improved versions of
     index() and count(). However, the issubclass() method
@@ -84,3 +85,22 @@ class SortedSet(Sequence):
 
     def __rmul__(self, times):
         return self * times;
+
+    def issubset(self, iterable):
+        return self <= SortedSet(iterable)
+
+    def issuperset(self, iterable):
+        return self >= SortedSet(iterable)
+
+    def intersection(self, iterable):
+        return self & SortedSet(iterable)
+
+    def union(self, iterable):
+        return self | SortedSet(iterable)
+
+    def symmetric_difference(self, iterable):
+        return self ^ SortedSet(iterable)
+
+    def difference(self, iterable):
+        return self - SortedSet(iterable)
+

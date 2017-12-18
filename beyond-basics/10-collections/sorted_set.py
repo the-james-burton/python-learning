@@ -4,16 +4,23 @@ from itertools import chain
 
 
 class SortedSet(Sequence, Set):
-    """ There is no longer any strict need to inherit from
+    """
+    There is no longer any strict need to inherit from
     Sequence. We have now implemented improved versions of
     index() and count(). However, the issubclass() method
     will return True if we do inherit from Sequence
-    making it more obvious what this class is
+    making it more obvious what this class is.
 
     we previously inherited from Sequence to gain default
     implementations of index() and count(), see this page for
     more details
-    https://docs.python.org/3.5/library/collections.abc.html"""
+    https://docs.python.org/3.5/library/collections.abc.html
+
+    This is an immutable collection.
+
+    For a mutable set, inherit MutableSet and implement
+    add(), discard(), update(), plus any others.
+    """
 
     def __init__(self, items=None):
         """if no starting list is given, then initialize

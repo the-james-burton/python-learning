@@ -1,9 +1,17 @@
 import bisect
 from collections.abc import Sequence
+from itertools import chain
 
 class SortedSet(Sequence):
-    """we inherit from Sequence to gain default implementations
-    of index() and count(), see this page for more details
+    """ There is no longer any strict need to inherit from
+    Sequence. We have now implemented improved versions of
+    index() and count(). However, the issubclass() method
+    will return True if we do inherit from Sequence
+    making it more obvious what this class is
+
+    we previously inherited from Sequence to gain default
+    implementations of index() and count(), see this page for
+    more details
     https://docs.python.org/3.5/library/collections.abc.html"""
 
     def __init__(self, items=None):
@@ -65,6 +73,8 @@ class SortedSet(Sequence):
             return index
         raise ValueError("{} not found".format(repr(item)))
 
-
     def count(self, item):
         return int(item in self)
+
+    def __add__(self, other):
+        return SortedSet(chain(self._items, other._items))

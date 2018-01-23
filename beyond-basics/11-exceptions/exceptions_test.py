@@ -43,6 +43,12 @@ class TestHandler(unittest.TestCase):
             a = exceptions.triangle_area(3, 4, 10)
             print(a)
         except exceptions.TriangleError as e:
-            print(1/0)
-            # print(e, file=sys.stdin)
+            # lookout for...
+            # "During handling of the above exception, another exception occurred:"
+            try:
+                print(1/0)
+            except ZeroDivisionError as z:
+                print(e)
+                print(z)
+                print(z.__context__ is e)
 

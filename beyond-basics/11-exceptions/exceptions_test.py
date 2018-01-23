@@ -1,3 +1,4 @@
+import traceback
 import unittest
 import sys
 import exceptions
@@ -59,3 +60,9 @@ class TestHandler(unittest.TestCase):
         except exceptions.InclinationError as e:
             print(e)
             print(e.__cause__)
+            # Don't keep a reference to __traceback__ outside of this exception block
+            # because there are too many object references and they will not be GC'ed
+            print(e.__traceback__)
+            traceback.print_tb(e.__traceback__)
+            s = traceback.format_tb(e.__traceback__)
+            print(s)

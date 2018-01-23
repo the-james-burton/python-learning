@@ -37,3 +37,8 @@ class TestHandler(unittest.TestCase):
             print("start:", e.start)
             print("end", e.end)
 
+    def test_triangle_error(self):
+        print("area:{0}".format(str(exceptions.triangle_area(3,4,5))))
+        print("area:{0}".format(str(exceptions.triangle_area(3,4,10))))
+
+

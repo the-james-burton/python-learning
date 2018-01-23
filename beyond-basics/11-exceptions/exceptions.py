@@ -2,6 +2,8 @@
 
 from random import randrange
 
+import math
+
 
 def main():
     number = randrange(10)
@@ -54,6 +56,10 @@ def median(iterable):
 def demo_unicode_error():
     b'hello\x81world'.decode('utf-8')
 
+def triangle_area(a, b, c):
+    p = (a + b + c) / 2
+    a = math.sqrt(p * (p - a) * (p - b) * (p - c))
+    return a
 
 if __name__ == '__main__':
     main()

@@ -39,6 +39,10 @@ class TestHandler(unittest.TestCase):
 
     def test_triangle_error(self):
         print("area:{0}".format(str(exceptions.triangle_area(3,4,5))))
-        print("area:{0}".format(str(exceptions.triangle_area(3,4,10))))
-
+        try:
+            a = exceptions.triangle_area(3, 4, 10)
+            print(a)
+        except exceptions.TriangleError as e:
+            print(1/0)
+            # print(e, file=sys.stdin)
 

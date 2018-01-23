@@ -39,6 +39,7 @@ class TestHandler(unittest.TestCase):
 
     def test_triangle_error(self):
         print("area:{0}".format(str(exceptions.triangle_area(3,4,5))))
+        # implicit chaining...
         try:
             a = exceptions.triangle_area(3, 4, 10)
             print(a)
@@ -52,3 +53,9 @@ class TestHandler(unittest.TestCase):
                 print(z)
                 print(z.__context__ is e)
 
+    def test_inclination_error(self):
+        try:
+            exceptions.inclination(0, 5)
+        except exceptions.InclinationError as e:
+            print(e)
+            print(e.__cause__)

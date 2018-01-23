@@ -72,6 +72,7 @@ class TriangleError(Exception):
     def __repr__(self):
         return "TriangleError({!r}, {!r}".format(self.args[0], self._sides)
 
+
 def triangle_area(a, b, c):
     sides = sorted((a, b, c))
     if sides[2] > sides[0] + sides[1]:
@@ -79,6 +80,18 @@ def triangle_area(a, b, c):
     p = (a + b + c) / 2
     a = math.sqrt(p * (p - a) * (p - b) * (p - c))
     return a
+
+
+class InclinationError(Exception):
+    pass
+
+
+def inclination(dx, dy):
+    try:
+        return math.degrees(math.atan(dy / dx))
+    except ZeroDivisionError as e:
+        raise InclinationError("Slope cannot be vertical") from e
+
 
 if __name__ == '__main__':
     main()

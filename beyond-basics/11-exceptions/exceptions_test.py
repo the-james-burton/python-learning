@@ -19,6 +19,8 @@ class TestHandler(unittest.TestCase):
         try:
             exceptions.median([])
         # the function leaks implementation details and the exception is not very helpful...
-        except IndexError as e:
+        except ValueError as e:
+            # only the left hand of the tuple is populated
+            # so we could use e.args[0] instead...
             print("Payload:", e.args)
             print(str(e))

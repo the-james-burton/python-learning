@@ -24,3 +24,16 @@ class TestHandler(unittest.TestCase):
             # so we could use e.args[0] instead...
             print("Payload:", e.args)
             print(str(e))
+
+    def test_demo_unicode_error(self):
+        try:
+            exceptions.demo_unicode_error()
+        # note how UnicodeError has additional properties...
+        except UnicodeError as e:
+            print(e)
+            print("encoding:", e.encoding)
+            print("reason:", e.reason)
+            print("object:", e.object)
+            print("start:", e.start)
+            print("end", e.end)
+

@@ -51,5 +51,9 @@ def median(iterable):
         return items[median_index]
     return (items[median_index] + items[median_index + 1]) / 2.0
 
+def demo_unicode_error():
+    b'hello\x81world'.decode('utf-8')
+
+
 if __name__ == '__main__':
     main()

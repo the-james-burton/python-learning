@@ -1,6 +1,6 @@
 import unittest
 import sys
-import handler
+import exceptions
 import io
 
 class TestHandler(unittest.TestCase):
@@ -12,4 +12,4 @@ class TestHandler(unittest.TestCase):
         # handler.main()
 
     def test_demo_lookup_error(self):
-        handler.demo_lookup_error()
+        exceptions.demo_lookup_error()

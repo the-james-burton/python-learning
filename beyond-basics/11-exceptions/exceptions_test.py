@@ -16,3 +16,9 @@ class TestHandler(unittest.TestCase):
 
     def test_median(self):
         print(exceptions.median([5,2,6,4,7,9]))
+        try:
+            exceptions.median([])
+        # the function leaks implementation details and the exception is not very helpful...
+        except IndexError as e:
+            print("Payload:", e.args)
+            print(str(e))

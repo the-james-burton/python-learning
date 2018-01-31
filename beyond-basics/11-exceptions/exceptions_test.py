@@ -66,3 +66,6 @@ class TestHandler(unittest.TestCase):
             traceback.print_tb(e.__traceback__)
             s = traceback.format_tb(e.__traceback__)
             print(s)
+
+    def demo_assert(self):
+        assert 2 < 1, "2 is not less than 1"

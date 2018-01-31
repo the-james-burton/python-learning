@@ -68,4 +68,6 @@ class TestHandler(unittest.TestCase):
             print(s)
 
     def demo_assert(self):
+        # note assert is VERY slow, use -O on the command line
+        # to disable them...
         assert 2 < 1, "2 is not less than 1"

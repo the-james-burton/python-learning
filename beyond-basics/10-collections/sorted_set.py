@@ -71,7 +71,12 @@ class SortedSet(Sequence, Set):
             return NotImplemented
         return self._items != other._items
 
+    def _is_unique_and_sorted(self):
+        return all(self[i] < self[i + 1] for i in range(len(self) - 1))
+
     def index(self, item):
+        # make an assertion...
+        assert(self._is_unique_and_sorted())
         # improved performance version over the Sequence default implementation
         # This version is O(log n) instead of O(n) achieved by taking advantage
         # of the fact that each item can only appear once in the list, therefore
@@ -82,6 +87,7 @@ class SortedSet(Sequence, Set):
         raise ValueError("{} not found".format(repr(item)))
 
     def count(self, item):
+        assert(self._is_unique_and_sorted())
         return int(item in self)
 
     def __add__(self, other):

@@ -1,5 +1,6 @@
 import unittest
 from LoggingContextManager import *
+from AnnotatedLoggingContextManager import *
 
 class TestHandler(unittest.TestCase):
 
@@ -10,3 +11,7 @@ class TestHandler(unittest.TestCase):
     def testLoggingContextManagerWithException(self):
         with LoggingContextManager() as cm:
             raise ValueError('I hate you')
+
+    def testAnnotatedCLoggingContextManager(self):
+        with annotated_logging_context_manager() as cm:
+            print(cm)

@@ -15,3 +15,7 @@ class TestHandler(unittest.TestCase):
     def testAnnotatedCLoggingContextManager(self):
         with annotated_logging_context_manager() as cm:
             print(cm)
+
+    def testAnnotatedCLoggingContextManagerWithException(self):
+        with annotated_logging_context_manager() as cm:
+            raise ValueError('I still hate you')

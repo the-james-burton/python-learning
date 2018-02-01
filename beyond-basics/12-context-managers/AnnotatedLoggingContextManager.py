@@ -11,4 +11,6 @@ def annotated_logging_context_manager():
     except Exception:
         print('LoggingContextManager.__exit__() [exception:{}]'
               .format(sys.exc_info()))
+        # if you don't want to propagate the exception
+        # don't call raise here...
         raise

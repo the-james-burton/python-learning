@@ -2,7 +2,7 @@ import unittest
 
 class TestHandler(unittest.TestCase):
 
-    def testIntrospection(self):
+    def testObjectIntrospection(self):
         i = 7
         # dir returns a list of attributes of an object...
         print(dir(i))
@@ -20,5 +20,12 @@ class TestHandler(unittest.TestCase):
         # testing for attributes is slower than handling exceptions
         # if the object does not have them
 
+    def testScopeInstrospection(self):
+        pass
 
-
+    def testAttributeError(self):
+        x = 5.6
+        try:
+            print(x.numerator)
+        except AttributeError as e:
+            print(x, "does not have numerator attribute")

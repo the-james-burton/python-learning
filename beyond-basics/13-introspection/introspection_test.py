@@ -36,6 +36,12 @@ class TestHandler(unittest.TestCase):
         # list all local attributes
         pprint(locals(), width=10)
 
+        # selective printing of locals...
+        fruit = 'apple'
+        colour = 'green'
+        taste = 'good'
+        print("This {colour} {fruit} tastes {taste}".format(**locals()))
+
     def testAttributeError(self):
         x = 5.6
         try:

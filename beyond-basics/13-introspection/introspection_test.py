@@ -1,5 +1,5 @@
 import unittest
-
+from pprint import pprint
 
 class TestHandler(unittest.TestCase):
 
@@ -23,18 +23,18 @@ class TestHandler(unittest.TestCase):
 
     def testScopeInstrospection(self):
         # list all global attributes
-        print(globals())
+        pprint(globals())
         # adding to and checking globals...
         globals()['a'] = 42
         print(globals()['a'])
         print('a' in globals())
 
-        # list all local attributes
-        print(locals())
         # adding to and checking locals...
         b = 24
         print(locals()['b'])
         print('b' in locals())
+        # list all local attributes
+        pprint(locals(), width=10)
 
     def testAttributeError(self):
         x = 5.6

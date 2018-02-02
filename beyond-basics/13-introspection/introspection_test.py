@@ -1,5 +1,6 @@
 import unittest
 
+
 class TestHandler(unittest.TestCase):
 
     def testObjectIntrospection(self):
@@ -21,7 +22,19 @@ class TestHandler(unittest.TestCase):
         # if the object does not have them
 
     def testScopeInstrospection(self):
-        pass
+        # list all global attributes
+        print(globals())
+        # adding to and checking globals...
+        globals()['a'] = 42
+        print(globals()['a'])
+        print('a' in globals())
+
+        # list all local attributes
+        print(locals())
+        # adding to and checking locals...
+        b = 24
+        print(locals()['b'])
+        print('b' in locals())
 
     def testAttributeError(self):
         x = 5.6

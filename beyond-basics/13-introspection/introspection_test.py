@@ -1,4 +1,6 @@
 import unittest
+import inspect
+import sorted_set
 from pprint import pprint
 
 class TestHandler(unittest.TestCase):
@@ -48,3 +50,18 @@ class TestHandler(unittest.TestCase):
             print(x.numerator)
         except AttributeError as e:
             print(x, "does not have numerator attribute")
+
+    def testInspect(self):
+        print(inspect.ismodule(sorted_set))
+        # a lot of output...
+        # pprint(inspect.getmembers(sorted_set))
+        # but we can narrow it down with a predicate...
+        pprint(inspect.getmembers(sorted_set, inspect.isclass))
+        # list all functions...
+        pprint(inspect.getmembers(sorted_set.SortedSet, inspect.isfunction))
+        # get a reference to __init__
+        init_sig = inspect.signature(sorted_set.SortedSet.__init__)
+        print(init_sig.parameters)
+        # can also get the default value...
+        print(init_sig.parameters['items'].default)
+

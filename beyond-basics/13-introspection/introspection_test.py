@@ -1,6 +1,7 @@
 import unittest
 import inspect
 import sorted_set
+import introspector
 from pprint import pprint
 
 class TestHandler(unittest.TestCase):
@@ -65,3 +66,5 @@ class TestHandler(unittest.TestCase):
         # can also get the default value...
         print(init_sig.parameters['items'].default)
 
+    def testIntrospector(self):
+        pass

@@ -67,4 +67,4 @@ class TestHandler(unittest.TestCase):
         print(init_sig.parameters['items'].default)
 
     def testIntrospector(self):
-        pass
+        introspector.dump(12)
